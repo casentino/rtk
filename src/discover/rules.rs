@@ -71,6 +71,15 @@ pub const RULES: &[RtkRule] = &[
         subcmd_status: &[],
     },
     RtkRule {
+        pattern: r"^yarn\s+(run|exec|install|add|remove|list|outdated)(\s|$)",
+        rtk_cmd: "rtk yarn",
+        rewrite_prefixes: &["yarn"],
+        category: "PackageManager",
+        savings_pct: 70.0,
+        subcmd_savings: &[],
+        subcmd_status: &[],
+    },
+    RtkRule {
         pattern: r"^npx\s+",
         rtk_cmd: "rtk npx",
         rewrite_prefixes: &["npx"],

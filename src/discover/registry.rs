@@ -3054,6 +3054,21 @@ mod tests {
     }
 
     #[test]
+    fn test_rewrite_yarn_command() {
+        let commands = vec![
+            "run", "exec", "install", "add", "remove", "list", "outdated",
+        ];
+        for command in commands {
+            assert_eq!(
+                rewrite_command_no_prefixes(format!("yarn {command}").as_str(), &[]),
+                Some(format!("rtk yarn {command}")),
+                "Failed for command: yarn {}",
+                command
+            );
+        }
+    }
+
+    #[test]
     fn test_rewrite_npx() {
         assert_eq!(
             rewrite_command_no_prefixes("npx svgo", &[]),
